@@ -6,5 +6,3 @@ module "resourcegroup" {
   location            = var.location
 
 }
-
-#asfksljdjfjd
