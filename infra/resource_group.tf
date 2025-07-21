@@ -15,3 +15,4 @@ module "resourcegroup2" {
   location            = var.location
 
 }
+
