@@ -5,11 +5,3 @@ variable "resource_group_name" {
 variable "location" {
   type = string
 }
-
-variable "name" {
-  type = string
-}
-
-variable "environment" {
-  type = string
-}
