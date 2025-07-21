@@ -5,3 +5,7 @@ variable "resource_group_name" {
 variable "location" {
   type = string
 }
+
+variable "resource_group_name2" {
+  type = string
+}

@@ -15,8 +15,8 @@ permissions:
   actions: write
 
 jobs:
-  terraform:
-    name: 'Terraform'
+  terraformSetup:
+    name: 'Terraform Setup'
     runs-on: ubuntu-latest
     environment: development
 
@@ -36,21 +36,25 @@ jobs:
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
+    terraformInitialisation:
     #Initialise Terraform
     - name: Terraform Init
       run: terraform init
       working-directory: infra/
 
+    terraformFormat:
     # Terraform Formatting 
     - name: Terraform Format
       run: terraform fmt -check
       working-directory: infra/
 
+    terraformPlan:
     #Terraform Plan
     - name: Terraform Plan
       run: terraform plan -input=false -var-file='demo.tfvars'
       working-directory: infra/
 
+    terraformApply:
     #Terraform Apply to deploy the resources
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false -var-file="demo.tfvars"
