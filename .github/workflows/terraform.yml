@@ -50,6 +50,11 @@ on:
 
 permissions:
   contents: read
+  id-token: write
+  issues:  write
+  pull-request: write
+  checks: write
+  actions: write
 
 jobs:
   terraform:
