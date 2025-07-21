@@ -1,14 +1,23 @@
-terraform {
-  required_version = ">=1.3.0"
-
+terraform { 
   required_providers {
     azurerm ={
         source = "hashicorp/azurerm"
         version = ">=3.43.0"
     }
   }
+
+  cloud { 
+    
+    organization = "MG-WepApp-Docker-Demo" 
+
+    workspaces { 
+      name = "SSE-WepApp-Docker-Demo" 
+    } 
+  } 
 }
 
 provider "azurerm" {
-  features {} 
+  features {
+    
+  }
 }
