@@ -26,7 +26,7 @@ jobs:
     - name: Extract latest version from JSON
       id: get-version
       run: |
-        VERSION=$(jq -r '.latest.version' ./app/version.json)
+        VERSION=$(jq -r '.latest.version' ./app/image_version.json)
         echo "Latest version is: $VERSION"
         echo "image_tag=$VERSION" >> $GITHUB_OUTPUT
 
