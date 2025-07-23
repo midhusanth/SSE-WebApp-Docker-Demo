@@ -31,13 +31,13 @@ jobs:
       with:
         push: true
         tags: acrmidsanth1855.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_14689fd5b7874edf9df0dddcf6eb3689 }}/flask-health-app:${{ github.sha }}
-        file: ./Dockerfile
+        file: .app/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'production'
+      name: 'development'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
