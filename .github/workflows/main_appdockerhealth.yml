@@ -5,8 +5,8 @@ name: Build and deploy container app to Azure Web App - appdockerhealth
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - 'app/**'
   workflow_dispatch:
 
 jobs:
