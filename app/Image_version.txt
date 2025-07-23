@@ -1,0 +1,10 @@
+{
+  "latest": {
+    "version": "v4"
+  },
+  "older": [
+    { "version": "v3" },
+    { "version": "v2" },
+    { "version": "v1" }
+  ]
+}

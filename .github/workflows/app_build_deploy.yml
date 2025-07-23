@@ -22,12 +22,19 @@ jobs:
         registry: https://acrmidsanth1855.azurecr.io/
         username: ${{ secrets.AzureAppService_ContainerUsername_14689fd5b7874edf9df0dddcf6eb3689 }}
         password: ${{ secrets.AzureAppService_ContainerPassword_6d7a7e6cdc754f159f9d79977548ad74 }}
+    
+    - name: Extract latest version from JSON
+      id: get-version
+      run: |
+        VERSION=$(jq -r '.latest.version' ./app/version.json)
+        echo "Latest version is: $VERSION"
+        echo "image_tag=$VERSION" >> $GITHUB_OUTPUT
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: acrmidsanth1855.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_14689fd5b7874edf9df0dddcf6eb3689 }}/flask-health-app:${{ github.sha }}
+        tags: acrmidsanth1855.azurecr.io/flask-health-app:${{ steps.get-version.outputs.image_tag }}
         file: ./app/Dockerfile
 
   deploy:
@@ -45,4 +52,4 @@ jobs:
         app-name: 'appdockerhealth'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_5eebd94958384d03a365c8735738c53a }}
-        images: 'acrmidsanth1855.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_14689fd5b7874edf9df0dddcf6eb3689 }}/flask-health-app:${{ github.sha }}'
+        images: 'acrmidsanth1855.azurecr.io/flask-health-app:${{ steps.get-version.outputs.image_tag }}'
