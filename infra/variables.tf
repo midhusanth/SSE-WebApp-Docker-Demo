@@ -38,3 +38,15 @@ variable "asp_sku_tier" {
 variable "asp_sku_size" {
   type = string
 }
+
+variable "webapp_name" {
+  type = string
+}
+
+variable "docker_image_name" {
+  type = string
+}
+
+variable "docker_registry_url" {
+  type = string
+}

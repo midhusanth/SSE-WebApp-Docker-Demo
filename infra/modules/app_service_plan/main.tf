@@ -10,5 +10,5 @@ resource "azurerm_app_service_plan" "asp" {
   }
 
   per_site_scaling = false
-  reserved         = false
+  reserved         = true
 }

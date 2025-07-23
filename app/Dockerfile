@@ -14,4 +14,4 @@ COPY app.py .
 EXPOSE 80
 
 # Run the app
-CMD ["python", "app.py"]
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "app:app"]

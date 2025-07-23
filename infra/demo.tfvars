@@ -10,5 +10,10 @@ acr_admin_enabled = true
 ##App Service Plan
 asp_name = "asp-midsanth-dev-uks"
 asp_appkind = "Linux"
-asp_sku_size = "F1"
-asp_sku_tier = "Free"
+asp_sku_size = "B1"
+asp_sku_tier = "Basic"
+
+##Webapp Container
+webapp_name = "appdockerhealth"
+docker_registry_url = "https://acrmidsanth1855.azurecr.io"
+docker_image_name = "flask-health-app:v3"
