@@ -15,19 +15,31 @@ A simple containerized Python Flask application with a Get Operation endpoint re
 
 ---
 ## 🧱 Project Architecture
-![Alt text](./docs/Cloud_Architecture.png)
-Above diagram shows the cloud infrastructure architetcure for the Health Check App. User from outside world will access the web app from the browser in HTTP port 80 and with the webapp URL(http://appdockerhealth.azurewebsites.net/health). The request will be then served by WebApp (appdockerhealth) which is residing in a Linux based App Service Plan. When ever the code change happens the container image will be built by the application workflow and the image is pushed to the Azure Container Registry(acrmidsanth1855) which is residing in the same resource group as that of WebApp Container. The same workflow will pull the image from the container registry and deploy the same in the WebApp Container.
+![Alt text](./docs/Cloud_Architecture.png) Above diagram shows the cloud infrastructure architetcure for the Health Check App. User from outside world will access the web app from the browser in HTTP port 80 and with the webapp URL(http://appdockerhealth.azurewebsites.net/health). The request will be then served by WebApp (appdockerhealth) which is residing in a Linux based App Service Plan. When ever the code change happens the container image will be built by the application workflow and the image is pushed to the Azure Container Registry(acrmidsanth1855) which is residing in the same resource group as that of WebApp Container. The same workflow will pull the image from the container registry and deploy the same in the WebApp Container.
+
+---
 ## 🗂️ Repository Structure
 Infrastrcture and Application code are kept in this same repository. Code is kept in separate folders for each area. The folder structure of the repo is as below.
 - 📂infra 
    All the infrasture code (Terraform) is places in this folder with another subfolder modules where the Azure Resource Terraform modules are kept in another subfolders for each resources. 
-   ![Alt text](./docs/Infra folder structure.png)
+   ![Alt text](./docs/Infra_folder_structure.png)
 - 📂app
   Application code for the health app is kept here along with the docker file and its dependent files. Also for tracking the docker imager version/tags another json file is kept.
-  ![Alt text](./docs/app folder structure.png)
+  ![Alt text](./docs/app_folder_structure.png)
 
-## Configuration
+----
+## 🔩 Configuration
+Various configurations were need for the health app to get up and running in the Webapp Container. Below are the high level steps for the configuration of infrastructure, application and CI/CD workflows.
 ### Infrastructure
+**Initial Setup** 
+- First of all, an azure subscription is need for provisioning the resources. Here we have used a free subscription azure resource.
+- As per the architecture, a resource group, Azure container Registry, App Service Plan and a Web App Container is needed. For the provisioning of the resources, IaC tool Terraform is used. Also, a GitHub repository and for Terraform state management Terraform Cloud account in needed.
+- Once the Terraform Cloud account is configured, Organisation and Workspace need to be created. 
+**Connectivity and Permissions**
+- For Terraform Cloud to have access to the subscription, a service principal needs to be created in Azure App Registration. Enable the service principal with Contributor role for the subscrition.
+- A new client secret need to be created in the certificate and secret section of the app registration.
+- Create environment variables in the TFC workspace for client id, client secret, subscription id and tenant id.
+- Connectivity needs to be established from GitHub to TFC with the help of API token created.
 ### Application
 ### CI/CD 
 
