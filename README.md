@@ -63,4 +63,5 @@ Infrastrcture and Application code are kept in this same repository. Code is kep
 ## Scope of improvement
  - ASE
  - Vnet integration
+ - Add synk and tflint for terraform security testing.
 
