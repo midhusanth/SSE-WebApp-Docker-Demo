@@ -14,7 +14,6 @@ module "rg_webapp_docker_demo" {
   app_name = var.app_name
   location = var.location
   env      = var.environment
-  resource_group_name =  var.resource_group_name
 }
 
 
