@@ -14,7 +14,7 @@ module "acr_docker_demo" {
   app_name            = replace(var.app_name, "-", "")
   location            = var.location
   env                 = var.environment
-  resource_group_name = module.rg_docker_demo.resource_group_name
+  resource_group_name = module.rg_webapp_docker_demo.resource_group_name
   sku                 = var.acr_sku
   admin_enabled       = var.acr_admin_enabled
 }
