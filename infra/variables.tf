@@ -1,8 +1,3 @@
-## Resource Group Variables
-variable "resource_group_name" {
-  type = string
-}
-
 ##Common
 variable "location" {
   type    = string
