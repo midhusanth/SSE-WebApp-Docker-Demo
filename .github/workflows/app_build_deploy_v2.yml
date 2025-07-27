@@ -51,7 +51,7 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'appdockerhealth'
+        app-name: 'app-docker-health-demo-uks'
         slot-name: 'production'
         publish-profile: ${{ secrets.WebApp_PublishProfile }}
         images: 'acrdockerhealthdemouks.azurecr.io/flask-health-app:${{ needs.build.outputs.image_tag }}'
