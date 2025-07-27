@@ -21,6 +21,5 @@ asp_os_type  = "Linux"
 asp_sku_name = "B1"
 
 ##Webapp Container
-webapp_name         = "appdockerhealth"
-docker_registry_url = "https://acrmidsanth1855.azurecr.io"
-docker_image_name   = "flask-health-app:v3"
+docker_registry_url = "https://acrdockerhealthdemouks.azurecr.io"
+docker_image_name   = "flask-health-app:latest"
