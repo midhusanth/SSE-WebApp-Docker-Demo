@@ -67,4 +67,3 @@ variable "docker_image_name" {
 variable "docker_registry_url" {
   type = string
 }
-
