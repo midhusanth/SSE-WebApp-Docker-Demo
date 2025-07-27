@@ -18,8 +18,8 @@ asp_appkind  = "Linux"
 asp_sku_size = "B1"
 asp_sku_tier = "Basic"
 
-asp_os_type = "Linux"
-asp_sku_name =  "B1"
+asp_os_type  = "Linux"
+asp_sku_name = "B1"
 
 ##Webapp Container
 webapp_name         = "appdockerhealth"
