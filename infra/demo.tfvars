@@ -1,3 +1,5 @@
+resource_group_name = "rg-webapp-docker-demo"
+
 ## Common
 location    = "uksouth"
 environment = "demo"
