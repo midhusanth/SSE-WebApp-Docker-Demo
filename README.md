@@ -104,6 +104,12 @@ Infrastrcture and Application code are kept in this same repository. Code is kep
 
 
 ## 💡Scope of improvement
+
+**CI/CD Workflows**
+- *Pull Request Approval* can be added in between a pull request for proper peer and approvala before merging the 
+- Terrform resource security and validation checks can be added using *Terraform Lint* and *Synk reports*.
+- GitHub Runners can be configured to securely run and build the pipelines.
+
 **Architecture**
 - *Vnet Integration* can be enforced in the webapp to secure the endpoints and controlled access.
 - *Custom domain* can be configured for the webapp URL to make it more user friendly.
@@ -112,8 +118,4 @@ Infrastrcture and Application code are kept in this same repository. Code is kep
   <img width="1309" height="811" alt="DockerApp-Updated Infra" src="https://github.com/user-attachments/assets/c1f4fe57-98ff-4fcb-90cc-fb0c54f0c0ca" />
 
 
-**CI/CD Workflows**
-- *Pull Request Approval* can be added in between a pull request for proper peer and approvala before merging the 
-- Terrform resource security and validation checks can be added using *Terraform Lint* and *Synk reports*.
-- GitHub Runners can be configured to securely run and build the pipelines.
 
