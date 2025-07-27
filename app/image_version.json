@@ -1,7 +1,7 @@
 {
   "latest": {
-    "version": "v6.1",
-    "description": "Added V6.1 Message"
+    "version": "v6.2",
+    "description": "Added V6.2 Message"
   },
   "older": [
     {
@@ -27,6 +27,10 @@
   {
     "version": "v6",
     "description": "Added v6 Message"
+  },
+  {
+    "version": "v6.1",
+    "description": "Added V6.1 Message"
   }
   ]
 }
