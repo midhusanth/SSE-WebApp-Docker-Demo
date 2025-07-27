@@ -1,10 +1,7 @@
-## Resource Group
-resource_group_name = "rg-webapp-docker-demo"
-
 ## Common
 location    = "uksouth"
 environment = "demo"
-app_name    = "webapp-dockerhealth"
+app_name    = "docker-health"
 
 
 ## Azure Container Registry
