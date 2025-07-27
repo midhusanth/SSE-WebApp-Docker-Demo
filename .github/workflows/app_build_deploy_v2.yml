@@ -21,7 +21,7 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://acrmidsanth1855.azurecr.io/
+        registry: https://acrdockerhealthdemouks.azurecr.io/
         username: ${{ secrets.WebApp_ContainerUsername }}
         password: ${{ secrets.WebApp_ContainerPassword }}
     
@@ -54,4 +54,4 @@ jobs:
         app-name: 'appdockerhealth'
         slot-name: 'production'
         publish-profile: ${{ secrets.WebApp_PublishProfile }}
-        images: 'acrmidsanth1855.azurecr.io/flask-health-app:${{ needs.build.outputs.image_tag }}'
+        images: 'acrdockerhealthdemouks.azurecr.io/flask-health-app:${{ needs.build.outputs.image_tag }}'
