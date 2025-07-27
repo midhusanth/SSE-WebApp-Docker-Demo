@@ -1,0 +1,57 @@
+name: 'App: Build & deploy'
+
+on:
+  push:
+    paths:
+      - 'app/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+    outputs:
+      image_tag: ${{ steps.get-version.outputs.image_tag }}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Log in to registry
+      uses: docker/login-action@v2
+      with:
+        registry: https://acrmidsanth1855.azurecr.io/
+        username: ${{ secrets.WebApp_ContainerUsername }}
+        password: ${{ secrets.WebApp_ContainerPassword }}
+    
+    - name: Extract latest version from JSON
+      id: get-version
+      run: |
+        VERSION=$(jq -r '.latest.version' ./app/image_version.json)
+        echo "Latest version is: $VERSION"
+        echo "image_tag=$VERSION" >> $GITHUB_OUTPUT
+
+    - name: Build and push container image to registry
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: acrmidsanth1855.azurecr.io/flask-health-app:${{ steps.get-version.outputs.image_tag }}
+        file: ./app/Dockerfile
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'development'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'appdockerhealth'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.WebApp_PublishProfile }}
+        images: 'acrmidsanth1855.azurecr.io/flask-health-app:${{ needs.build.outputs.image_tag }}'

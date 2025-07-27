@@ -6,7 +6,7 @@ locals {
     "westeurope" : "euw"
   }
   naming_convention_region = try(local.region_mappings[lower(var.location)], "glb")
-  webapp_name                 = trimsuffix(lower("app${var.app_name}${var.env}${local.naming_convention_region}"), "-")
+  webapp_name                 = trimsuffix(lower("app-${var.app_name}-${var.env}-${local.naming_convention_region}"), "-")
 }
 
 
