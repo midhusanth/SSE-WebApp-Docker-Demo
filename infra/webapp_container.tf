@@ -26,5 +26,5 @@ module "webapp_docker_demo" {
   docker_registry_username = module.acr_docker_demo.admin_username
   docker_registry_password = module.acr_docker_demo.admin_password
 
-  depends_on = [module.rg_webapp_docker_demo, module.asp_docker_demo]
+  depends_on = [module.rg_webapp_docker_demo]
 }
