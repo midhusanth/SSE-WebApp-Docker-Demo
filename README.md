@@ -80,7 +80,7 @@ CI/CD Implementation of workflows and automation is very crucial for a consisten
 - After the successful build pipeline, create a pull request from feature branch to main branch.
 - Review the changes by peer review and approvals if required. Merge the changes to main branch.
 - Automatically another workflow for app code deployment for webapp will trigger and it will deploy the image from the previous build to WebApp.
-<img width="805" height="554" alt="AppCICD" src="https://github.com/user-attachments/assets/9d73a55b-1225-4e62-9e4f-f8eb366aa1d2" />
+<img width="805" height="554" alt="AppCICD" src="https://github.com/user-attachments/assets/a805afa9-763d-40ec-9e9d-645c877cbc6e" />
 
 
 ---
@@ -95,11 +95,25 @@ Infrastrcture and Application code are kept in this same repository. Code is kep
   <img width="523" height="515" alt="Infra folder structure" src="https://github.com/user-attachments/assets/15b65bff-29be-496f-aa87-fd86cd67a454" />
 
 
-## Benifits
+## 👌 Benefits
+- Fully Automated release process for both infrastructure and application using GitHub Actions.
+- Consistent infrasturcture with standard naming conventions and processes.
+- Easy process of deployment and redeployment of code.
+- Proper tracking of the changes with Pull Request and commits. Protected main branch.
+- Feature branching strategy for enabling for multi developer involvement at same time.
 
-## Scope of improvement
- - ASE
- - Vnet integration
- - Add synk and tflint for terraform security testing.
- - braching strategy
+
+## 💡Scope of improvement
+**Architecture**
+- *Vnet Integration* can be enforced in the webapp to secure the endpoints and controlled access.
+- *Custom domain* can be configured for the webapp URL to make it more user friendly.
+- For handling sensitive and highly confidential data, App service plan and web app can be deployed in an *App Service Environment*.
+- Improved architecture diagram is as follows:
+  <img width="1309" height="811" alt="DockerApp-Updated Infra" src="https://github.com/user-attachments/assets/c1f4fe57-98ff-4fcb-90cc-fb0c54f0c0ca" />
+
+
+**CI/CD Workflows**
+- *Pull Request Approval* can be added in between a pull request for proper peer and approvala before merging the 
+- Terrform resource security and validation checks can be added using *Terraform Lint* and *Synk reports*.
+- GitHub Runners can be configured to securely run and build the pipelines.
 
