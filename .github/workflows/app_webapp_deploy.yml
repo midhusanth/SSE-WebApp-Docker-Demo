@@ -8,45 +8,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: 'ubuntu-latest'
-    outputs:
-      image_tag: ${{ steps.get-version.outputs.image_tag }}
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
-
-    - name: Log in to registry
-      uses: docker/login-action@v2
-      with:
-        registry: https://acrdockerhealthdemouks.azurecr.io/
-        username: ${{ secrets.WebApp_ContainerUsername }}
-        password: ${{ secrets.WebApp_ContainerPassword }}
-    
-    - name: Extract latest version from JSON
-      id: get-version
-      run: |
-        VERSION=$(jq -r '.latest.version' ./app/image_version.json)
-        echo "Latest version is: $VERSION"
-        echo "image_tag=$VERSION" >> $GITHUB_OUTPUT
-
-    - name: Build and push container image to registry
-      uses: docker/build-push-action@v3
-      with:
-        push: true
-        tags: acrdockerhealthdemouks.azurecr.io/flask-health-app:${{ steps.get-version.outputs.image_tag }}
-        file: ./app/Dockerfile
-
   deploy:
     runs-on: ubuntu-latest
+    outputs:
+      image_tag: ${{ steps.get-version.outputs.image_tag }}
     environment:
       name: 'development'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+    - uses: actions/checkout@v2
     - name: Extract latest version from JSON
       id: get-version
       run: |
