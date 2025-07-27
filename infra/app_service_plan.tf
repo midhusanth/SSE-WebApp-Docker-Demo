@@ -21,4 +21,6 @@ module "asp_docker_demo" {
 
   os_type  = var.asp_os_type
   sku_name = var.asp_sku_name
+
+  depends_on = [module.rg_webapp_docker_demo]
 }
