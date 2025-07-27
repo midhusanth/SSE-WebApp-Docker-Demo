@@ -17,7 +17,7 @@ A simple containerized Python Flask application with a Get Operation endpoint re
 ## 🧱 Project Architecture
 ![Alt text](./docs/Cloud_Infrastructure.png) 
 
-Above diagram shows the cloud infrastructure architetcure for the Health Check App. User from outside world will access the web app from the browser in HTTP port 80 and with the webapp URL(http://appdockerhealth.azurewebsites.net/health). The request will be then served by WebApp (appdockerhealth) which is residing in a Linux based App Service Plan. When ever the code change happens the container image will be built by the application workflow and the image is pushed to the Azure Container Registry(acrmidsanth1855) which is residing in the same resource group as that of WebApp Container. The same workflow will pull the image from the container registry and deploy the same in the WebApp Container.
+Above diagram shows the cloud infrastructure architetcure for the Health Check App. User from outside world will access the web app from the browser in HTTP port 80 and with the webapp URL ([Health Check URL](http://app-docker-health-demo-uks.azurewebsites.net/health)). The request will be then served by WebApp (app-docker-health-demo-uks) which is residing in a Linux based App Service Plan. When ever the code change happens the container image will be built by the application workflow and the image is pushed to the Azure Container Registry(acrdockerhealthdemouks) which is residing in the same resource group as that of WebApp Container. The same workflow will pull the image from the container registry and deploy the pushed image in the WebApp Container.
 
 ----
 ## 🔩 Configuration
@@ -42,10 +42,32 @@ Various configurations were need for the health app to get up and running in the
   3. [App Service Plan](https://github.com/midhusanth/SSE-WebApp-Docker-Demo/tree/main/infra/modules/app_service_plan)
   4. [Web App Container](https://github.com/midhusanth/SSE-WebApp-Docker-Demo/tree/main/infra/modules/webapp_container)
 - Used the above module for creating the actual resources with separate resource file.
-- Created the workflow terraform plan and apply for testing and deploying the resources. More details about the workflows are mentioned in [CI/CD Implementation](#cicd-implementation)
+- Run the plan locally to see if the resources will provision prooperly.
+- Repository strcuture details are available in [Repository Structure](#%EF%B8%8F-repository-structure) section.
+
+**Automated deployment**
+- Created the workflow terraform plan and apply for testing and deploying the resources. More details about the workflows are mentioned in [CI/CD Implementation](#cicd-implementation) section.
 
 ### Application
+**Local Application Setup**
+- Install Python, flask, and gunicorn in the local machine where developement is being done.
+- Install docker desktop and run the docker engine.
+
+**App Development annd testing**
+- Develop the app code in Visual Studio Code.
+- Create the Dockerfile with image configurations and requirements.txt file for dependencies.
+- For proper versioning of the image created a JSON file to store the image version and description.
+- Once the development is completed, then test the image locally and check if the endpoint is available via port 80.
+
+**Automated deployment**
+- Created the workflow for building the image with docker, pushing the image to the Azure container registry and deploy the image into webapp by pulling the image from ACR. More details about the workflows are mentioned in [CI/CD Implementation](#cicd-implementation) section.
+
 ### CI/CD Implementation
+CI/CD Implementation of workflows and automation is very crucial for a consistent and efficient delivery. Here for this project we have used GitHub Action for the Infrastructure testing and provisioning as well as the application building and deployment. 
+
+**Infrastructure**
+-  
+
 
 
 ---
