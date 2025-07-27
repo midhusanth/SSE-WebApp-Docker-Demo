@@ -15,7 +15,7 @@ A simple containerized Python Flask application with a Get Operation endpoint re
 
 ---
 ## 🧱 Project Architecture
-![Alt text](./docs/Cloud_Architecture.png) 
+![Alt text](./docs/Cloud_Infrastructure.png) 
 
 Above diagram shows the cloud infrastructure architetcure for the Health Check App. User from outside world will access the web app from the browser in HTTP port 80 and with the webapp URL(http://appdockerhealth.azurewebsites.net/health). The request will be then served by WebApp (appdockerhealth) which is residing in a Linux based App Service Plan. When ever the code change happens the container image will be built by the application workflow and the image is pushed to the Azure Container Registry(acrmidsanth1855) which is residing in the same resource group as that of WebApp Container. The same workflow will pull the image from the container registry and deploy the same in the WebApp Container.
 
