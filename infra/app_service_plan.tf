@@ -17,7 +17,7 @@ module "asp_docker_demo" {
   location = var.location
   env      = var.environment
 
-  resource_group_name = module.resourcegroup.resource_group_name
+  resource_group_name = module.rg_webapp_docker_demo.resource_group_name
 
   os_type  = var.asp_os_type
   sku_name = var.asp_sku_name
