@@ -36,7 +36,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: acrmidsanth1855.azurecr.io/flask-health-app:${{ steps.get-version.outputs.image_tag }}
+        tags: acrdockerhealthdemouks.azurecr.io/flask-health-app:${{ steps.get-version.outputs.image_tag }}
         file: ./app/Dockerfile
 
   deploy:
