@@ -15,7 +15,7 @@ A simple containerized Python Flask application with a Get Operation endpoint re
 
 ---
 ## 🧱 Project Architecture
-![Alt text](./docs/Cloud_Infrastructure.png) 
+<img width="780" height="463" alt="Cloud_Infrastructure" src="https://github.com/user-attachments/assets/c60e4a68-722f-4db5-a5be-64f913f7c204" />
 
 Above diagram shows the cloud infrastructure architetcure for the Health Check App. User from outside world will access the web app from the browser in HTTP port 80 and with the webapp URL ([Health Check URL](http://app-docker-health-demo-uks.azurewebsites.net/health)). The request will be then served by WebApp (app-docker-health-demo-uks) which is residing in a Linux based App Service Plan. When ever the code change happens the container image will be built by the application workflow and the image is pushed to the Azure Container Registry(acrdockerhealthdemouks) which is residing in the same resource group as that of WebApp Container. The same workflow will pull the image from the container registry and deploy the pushed image in the WebApp Container.
 
@@ -63,11 +63,24 @@ Various configurations were need for the health app to get up and running in the
 - Created the workflow for building the image with docker, pushing the image to the Azure container registry and deploy the image into webapp by pulling the image from ACR. More details about the workflows are mentioned in [CI/CD Implementation](#cicd-implementation) section.
 
 ### CI/CD Implementation
-CI/CD Implementation of workflows and automation is very crucial for a consistent and efficient delivery. Here for this project we have used GitHub Action for the Infrastructure testing and provisioning as well as the application building and deployment. 
+CI/CD Implementation of workflows and automation is very crucial for a consistent and efficient delivery. Here for this project we have used GitHub Action for the Infrastructure testing and provisioning as well as the application building and deployment. **Feature branching strategy** is being used through the implementation. main branch being the production ready/deployment ready branch and separate feature branches will be created and used for development and testing.
 
 **Infrastructure**
--  
+-  New changes to the IaC is created using a feature branch from main. If needed test the TF plan locally after login using az login.
+-  Push the changes to the remote feature branch which will trigger the plan terraform_plan workflow when a commit happens in the infra folder.
+-  Once the TF plan is succcesfully, create a pull request from feature branch to main branch.
+-  Review the changes by peer review and approvals if required. Merge the changes to main branch.
+-  Automatically another workflow for terraform apply will trigger and it will deploy the resource or config changes to Azure.
+<img width="804" height="554" alt="Infra_CICD" src="https://github.com/user-attachments/assets/85fc3f11-6b95-49ab-8f5f-04f029ae7889" />
 
+**Application**
+- New changes to the application is developed using a new feature branch from main.
+- Development and testing is done locally within Visual Studio Code.
+- Push the changes to feature branch which will trigger the application workflow for building the image in docker and pushing the image to ACR.
+- After the successful build pipeline, create a pull request from feature branch to main branch.
+- Review the changes by peer review and approvals if required. Merge the changes to main branch.
+- Automatically another workflow for app code deployment for webapp will trigger and it will deploy the image from the previous build to WebApp.
+<img width="805" height="554" alt="AppCICD" src="https://github.com/user-attachments/assets/9d73a55b-1225-4e62-9e4f-f8eb366aa1d2" />
 
 
 ---
@@ -75,10 +88,12 @@ CI/CD Implementation of workflows and automation is very crucial for a consisten
 Infrastrcture and Application code are kept in this same repository. Code is kept in separate folders for each area. The folder structure of the repo is as below.
 - 📂infra  
    All the infrasture code (Terraform) is places in this folder with another subfolder modules where the Azure Resource Terraform modules are kept in another subfolders for each resources.  
-   ![Alt text](./docs/Infra_folder_structure.png)
+   <img width="387" height="197" alt="app folder structure" src="https://github.com/user-attachments/assets/52722439-8582-4dca-9258-623b290e2b28" />
+
 - 📂app  
   Application code for the health app is kept here along with the docker file and its dependent files. Also for tracking the docker imager version/tags another json file is kept.  
-  ![Alt text](./docs/app_folder_structure.png)
+  <img width="523" height="515" alt="Infra folder structure" src="https://github.com/user-attachments/assets/15b65bff-29be-496f-aa87-fd86cd67a454" />
+
 
 ## Benifits
 
@@ -86,4 +101,5 @@ Infrastrcture and Application code are kept in this same repository. Code is kep
  - ASE
  - Vnet integration
  - Add synk and tflint for terraform security testing.
+ - braching strategy
 
