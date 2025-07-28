@@ -54,24 +54,24 @@ jobs:
         echo "Latest version is: $VERSION"
         echo "image_tag=$VERSION" >> $GITHUB_OUTPUT
 
-    # - name: Deploy to Azure Web App
-    #   id: deploy-to-webapp
-    #   uses: azure/webapps-deploy@v2
-    #   with:
-    #     app-name: 'app-docker-health-demo-uks'
-    #     slot-name: 'production'
-    #     publish-profile: ${{ secrets.WebApp_PublishProfile }}
-    #     images: 'acrdockerhealthdemouks.azurecr.io/flask-health-app:${{ steps.get-version.outputs.image_tag }}'
-    
-        # Log in to Azure (required to restart Web App)
-    - name: Azure Login
-      uses: azure/login@v1
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        app-name: 'app-docker-health-demo-uks'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.WebApp_PublishProfile }}
+        images: 'acrdockerhealthdemouks.azurecr.io/flask-health-app:${{ steps.get-version.outputs.image_tag }}'
+    
+    # Log in to Azure (required to restart Web App)
+    # - name: Azure Login
+    #   uses: azure/login@v1
+    #   with:
+    #     creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    # Restart the Web App to pull the new image
-    - name: Restart Azure Web App
-      run: |
-        az webapp restart \
-          --name 'app-docker-health-demo-uks' \
-          --resource-group 'rg-docker-health-demo-uks'
+    # # Restart the Web App to pull the new image
+    # - name: Restart Azure Web App
+    #   run: |
+    #     az webapp restart \
+    #       --name 'app-docker-health-demo-uks' \
+    #       --resource-group 'rg-docker-health-demo-uks'
