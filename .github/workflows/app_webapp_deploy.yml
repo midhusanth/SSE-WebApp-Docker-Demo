@@ -25,14 +25,15 @@ jobs:
         echo "Latest version is: $VERSION"
         echo "image_tag=$VERSION" >> $GITHUB_OUTPUT
 
-    # - name: Deploy to Azure Web App
-    #   id: deploy-to-webapp
-    #   uses: azure/webapps-deploy@v2
-    #   with:
-    #     app-name: 'app-docker-health-demo-uks'
-    #     slot-name: 'production'
-    #     publish-profile: ${{ secrets.WebApp_PublishProfile }}
-    #     images: 'acrdockerhealthdemouks.azurecr.io/flask-health-app:${{ steps.get-version.outputs.image_tag }}'
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'app-docker-health-demo-uks'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.WebApp_PublishProfile }}
+        #images: 'acrdockerhealthdemouks.azurecr.io/flask-health-app:${{ steps.get-version.outputs.image_tag }}'
+        images: 'acrdockerhealthdemouks.azurecr.io/flask-health-app:latest'
     
         # Log in to Azure (required to restart Web App)
     - name: Azure Login
