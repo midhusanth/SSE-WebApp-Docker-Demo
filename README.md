@@ -90,11 +90,12 @@ CI/CD Implementation of workflows and automation is very crucial for a consisten
 Infrastrcture and Application code are kept in this same repository. Code is kept in separate folders for each area. The folder structure of the repo is as below.
 - 📂infra  
    All the infrastructure code (Terraform) is placed in this folder with another subfolder 'modules' where the Terraform modules for various Azure Resource are kept.  
-   <img width="387" height="197" alt="app folder structure" src="https://github.com/user-attachments/assets/52722439-8582-4dca-9258-623b290e2b28" />
+   <img width="523" height="515" alt="Infra folder structure" src="https://github.com/user-attachments/assets/15b65bff-29be-496f-aa87-fd86cd67a454" />
 
 - 📂app  
   Application code for the health app is kept here along with the docker file and its dependent files. Also for tracking the docker imager version/tags another json file is kept.  
-  <img width="523" height="515" alt="Infra folder structure" src="https://github.com/user-attachments/assets/15b65bff-29be-496f-aa87-fd86cd67a454" />
+  <img width="387" height="197" alt="app folder structure" src="https://github.com/user-attachments/assets/52722439-8582-4dca-9258-623b290e2b28" />
+  
 
 
 ## 👌 Benefits
